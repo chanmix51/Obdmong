@@ -16,7 +16,7 @@ class Connection
         if (!isset($this->maps[$class_name]) or $force)
         {
             $class_name = sprintf("%sMap", $class_name);
-            $this->maps[$class_name] = new $class_name;
+            $this->maps[$class_name] = new $class_name($this);
         }
 
         return $this->maps[$class_name];
