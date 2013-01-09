@@ -8,7 +8,7 @@ class Connection
 
     public function __construct($dsn, $options)
     {
-        $this->client = new MongoClient($dsn, $options);
+        $this->client = new \MongoClient($dsn, $options);
     }
 
     public function getMapFor($class_name, $force = false)
