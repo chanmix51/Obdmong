@@ -1,5 +1,5 @@
 <?php
-namespace Odbmong;
+namespace Obdmong;
 
 abstract class EntityMap
 {
