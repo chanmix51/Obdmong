@@ -23,7 +23,7 @@ abstract class EntityMap
         }
     }
 
-    abstract protected function intitialize();
+    abstract protected function initialize();
 
     public function find(Array $filter, Array $select = null)
     {
