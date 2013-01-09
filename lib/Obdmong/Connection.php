@@ -13,7 +13,7 @@ class Connection
 
     public function getMapFor($class_name, $force = false)
     {
-        if (!$isset($this->maps[$class_name] or $force))
+        if (!isset($this->maps[$class_name]) or $force)
         {
             $class_name = sprintf("%sMap", $class_name);
             $this->maps[$class_name] = new $class_name;
