@@ -45,7 +45,7 @@ abstract class EntityMap
 
     protected function doFind(Array $filter, Array $select = null)
     {
-        $collection = $this->connection->getMongo($this->collection);
+        $collection = $this->connection->getCollection($this->database, $this->collection);
 
         if (is_null($select))
         {

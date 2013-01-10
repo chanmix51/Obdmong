@@ -22,15 +22,18 @@ class Connection
         return $this->maps[$class_name];
     }
 
-    public function getMongo($collection = null)
+    public function getMongoClient()
     {
-        if (is_null($collection))
-        {
-            return $this->client;
-        }
-        else
-        {
-            return $this->client->$collection;
-        }
+        return $this->client;
+    }
+
+    public function getDatabase($database)
+    {
+        return $this->client->$database;
+    }
+
+    public function getCollection($database, $collection)
+    {
+        return $this->client->$database->$collection;
     }
 }
