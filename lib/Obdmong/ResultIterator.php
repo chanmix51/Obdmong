@@ -1,11 +1,11 @@
 <?php
 namespace Obdmong;
 
-class Iterator extends \IteratorIterator
+class ResultIterator extends \IteratorIterator
 {
     protected $map;
 
-    public function __contruct(\MongoCursor $mongo_cursor, EntityMap $entity_map)
+    public function __construct(\MongoCursor $mongo_cursor, EntityMap $entity_map)
     {
         $this->map = $entity_map;
         parent::__construct($mongo_cursor);
