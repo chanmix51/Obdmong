@@ -17,4 +17,16 @@ class ResultIterator extends \IteratorIterator
 
         return new $entity_class(parent::current());
     }
+
+    public function export()
+    {
+        $results = array();
+
+        foreach($this as $result)
+        {
+            $results[] = $result;
+        }
+
+        return $results;
+    }
 }
