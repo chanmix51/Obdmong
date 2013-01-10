@@ -92,6 +92,11 @@ abstract class Entity implements \ArrayAccess
      */
     public function __call($method, $arguments)
     {
+        if ( $method === 'get_id' )
+        {
+            return $this->get('_id');
+        }
+
         list($operation, $attribute) = preg_split('/(?=[A-Z])/', $method, 2);
         $attribute = strtolower($attribute[0]).substr($attribute, 1);
 
