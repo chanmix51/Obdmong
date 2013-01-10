@@ -1,7 +1,7 @@
 <?php
 namespace Obdmong;
 
-class ResultIterator implements \OuterIterator
+class ResultIterator implements \OuterIterator, \Countable
 {
     protected $map;
     protected $cursor;
@@ -42,6 +42,11 @@ class ResultIterator implements \OuterIterator
     public function valid()
     {
         return $this->getInnerIterator()->valid();
+    }
+
+    public function count()
+    {
+        return $this->getInnerIterator()->count();
     }
 
     public function export()
