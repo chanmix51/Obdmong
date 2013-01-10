@@ -48,7 +48,7 @@ class ResultIterator implements \OuterIterator
     {
         $results = array();
 
-        foreach($this as $result)
+        foreach($this->getInnerIterator() as $result)
         {
             $results[] = $result;
         }
