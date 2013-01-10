@@ -59,6 +59,6 @@ abstract class EntityMap
 
     protected function getIteratorFromResult(\MongoCursor $cursor)
     {
-        return new Iterator($cursor, $this);
+        return new ResultIterator($cursor, $this);
     }
 }
