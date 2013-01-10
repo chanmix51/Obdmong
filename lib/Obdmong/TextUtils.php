@@ -1,5 +1,5 @@
 <?php
-namespace SlapOM;
+namespace Obdmong;
 
 /** textUtils
  *  This work belongs to the symfony project
