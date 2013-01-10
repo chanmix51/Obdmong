@@ -6,7 +6,7 @@ class Connection
     protected $client;
     protected $maps = array();
 
-    public function __construct($dsn, $options)
+    public function __construct($dsn, Array $options = array())
     {
         $this->client = new \MongoClient($dsn, $options);
     }
