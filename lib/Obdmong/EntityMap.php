@@ -4,6 +4,7 @@ namespace Obdmong;
 abstract class EntityMap
 {
     protected $entity_class;
+    protected $database;
     protected $collection;
     protected $connection;
 
@@ -11,6 +12,11 @@ abstract class EntityMap
     {
         $this->connection = $connection;
         $this->initialize();
+
+        if (!isset($this->database))
+        {
+            throw new \DomainException(sprintf("`database` not set after initialized class '%s'.", get_class($this)));
+        }
 
         if (!isset($this->collection))
         {
