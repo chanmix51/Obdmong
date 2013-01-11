@@ -92,9 +92,9 @@ abstract class Entity implements \ArrayAccess
      */
     public function __call($method, $arguments)
     {
-        if ( $method === 'get_id' )
+        if ( preg_match('/_id$/', $method) )
         {
-            return $this->get('_id');
+            return $this->call_id($method);
         }
 
         list($operation, $attribute) = preg_split('/(?=[A-Z])/', $method, 2);
@@ -159,5 +159,19 @@ abstract class Entity implements \ArrayAccess
         }
 
         return $values;
+    }
+
+    protected function call_id($method)
+    {
+        if ( $method === 'get_id' )
+        {
+            return $this->get('_id');
+        }
+        elseif ( $method === 'has_id' )
+        {
+            return $this->has('_id');
+        }
+
+        throw new Exception(sprintf("Method '%s' not implemented for special attribute '_id'.", $method));
     }
 }
