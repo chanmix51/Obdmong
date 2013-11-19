@@ -64,6 +64,22 @@ abstract class EntityMap
 
     public function saveOne(Entity $entity)
     {
-        $this->connection->getCollection($this->database, $this->collection)->save($entity->export());
+        $fields = $entity->dump();
+
+        if (isset($fields["_id"]))
+        {
+            $id = $fields["_id"];
+            unset($fields["_id"]);
+            $result = $this->connection
+                ->getCollection($this->database, $this->collection)
+                ->update(array("_id" => $id), $fields, array("fsync" => 1));
+        }
+        else
+        {
+            $result = $this->connection
+                ->getCollection($this->database, $this->collection)
+                ->insert($fields, array('fsync' => 1));
+            $entity->set("_id", $fields["_id"]);
+        }
     }
 }

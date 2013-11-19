@@ -174,4 +174,9 @@ abstract class Entity implements \ArrayAccess
 
         throw new Exception(sprintf("Method '%s' not implemented for special attribute '_id'.", $method));
     }
+
+    public function dump()
+    {
+        return $this->values;
+    }
 }
