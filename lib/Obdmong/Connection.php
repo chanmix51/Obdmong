@@ -8,6 +8,13 @@ class Connection
 
     public function __construct($dsn, Array $options = array())
     {
+        if (!preg_match('#/(\w+)$#', $dsn, $matchs))
+        {
+            throw new \InvalidArgumentException(sprintf("Invalid database in dsn '%s'.", $dsn));
+        }
+
+        $this->db_name = $matchs[1];
+
         $this->client = new \MongoClient($dsn, $options);
     }
 
@@ -27,13 +34,20 @@ class Connection
         return $this->client;
     }
 
-    public function getDatabase($database)
+    public function getDatabase($database = null)
     {
+        $database = $database == null ? $this->db_name : $database;
+
         return $this->client->$database;
     }
 
     public function getCollection($database, $collection)
     {
-        return $this->client->$database->$collection;
+        return $this->getDatabase()->$collection;
+    }
+
+    public function getDbName()
+    {
+        return $this->db_name;
     }
 }

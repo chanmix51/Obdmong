@@ -24,6 +24,13 @@ class ResultIterator implements \OuterIterator, \Countable
         return new $entity_class($this->getInnerIterator()->current());
     }
 
+    public function getNext()
+    {
+        $this->next();
+
+        return $this->current();
+    }
+
     public function next()
     {
         $this->getInnerIterator()->next();
