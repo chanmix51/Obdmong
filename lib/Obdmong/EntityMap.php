@@ -61,4 +61,9 @@ abstract class EntityMap
     {
         return new ResultIterator($cursor, $this);
     }
+
+    public function saveOne(Entity $entity)
+    {
+        $this->connection->getCollection($this->database, $this->collection)->save($entity->export());
+    }
 }
